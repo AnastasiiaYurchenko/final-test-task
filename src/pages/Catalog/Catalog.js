@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import * as API from '../../API';
 import { Loader } from 'components/Loader/Loader';
+import {
+  BtnLearnMore,
+  CarItem,
+  CarsList,
+  Image,
+  Text,
+  TextModel,
+  TextTitles,
+  WrapInfo,
+  WrapTitles,
+} from './Catalog.styled';
+
+import NoImageCar from 'images/no-image-car.jpg';
 
 export const ERROR_MSG = 'Something went wrong, please try again';
 
 const Catalog = () => {
   //   return <div>Catalog</div>;
-  const [movies, setMovies] = useState([]);
+  const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -18,7 +31,7 @@ const Catalog = () => {
         const trendingMovies = await API.getTrendingMovies();
         // console.log(trendingMovies);
 
-        setMovies(trendingMovies);
+        setCars(trendingMovies);
       } catch (error) {
         setError(ERROR_MSG);
       } finally {
@@ -29,27 +42,45 @@ const Catalog = () => {
   }, []);
   //   console.log(movies);
   return (
-    <ul>
+    <CarsList>
       {error && <h1>{error} </h1>}
       {loading && <Loader />}
-      {movies &&
-        movies.map(movie => {
+      {cars &&
+        cars.map(car => {
           return (
-            <li key={movie.id}>
-              <img src={movie.img} alt={movie.make}></img>
-              <p>{movie.make}</p>
-              <p>{movie.model},</p>
-              <p>{movie.year}</p>
-              <p>{movie.rentalPrice}</p>
-              <p></p>
+            <CarItem key={car.id}>
+              <Image
+                // src={car.img ? car.img : { NoImageCar }}
+                src={car.img || NoImageCar}
+                alt={car.make}
+                width="274px"
+                height="268px"
+              ></Image>
+              <WrapTitles>
+                <TextTitles>
+                  {car.make} <TextModel>{car.model},</TextModel> {car.year}
+                </TextTitles>
+                <TextTitles>{car.rentalPrice}</TextTitles>
+              </WrapTitles>
+
+              <WrapInfo>
+                <Text>{car.address.split(',')[1]}</Text>
+                <Text>{car.address.split(',')[2]}</Text>
+                <Text>{car.rentalCompany}</Text>
+                <Text> {car.type} </Text>
+                <Text>{car.id}</Text>
+                <Text>{car.accessories[0]}</Text>
+              </WrapInfo>
+
+              <BtnLearnMore type="button">Learn more</BtnLearnMore>
 
               {/* <Link key={movie.id} to={`movies/${movie.id}`}>
                 {movie.title || movie.name}
               </Link> */}
-            </li>
+            </CarItem>
           );
         })}
-    </ul>
+    </CarsList>
   );
 };
 
