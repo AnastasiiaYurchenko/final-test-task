@@ -7,6 +7,7 @@ export const getTrendingMovies = async () => {
   if (response.status === 404) {
     throw new Error('Something went wrong, please try again', response.status);
   }
+  console.log(response.data);
   return response.data;
 };
 
