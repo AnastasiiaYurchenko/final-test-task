@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ReactComponent as Heart } from '../../images/svg/heart.svg';
 
 export const CarsList = styled.ul`
   display: flex;
@@ -7,6 +8,7 @@ export const CarsList = styled.ul`
 `;
 
 export const CarItem = styled.li`
+  position: relative;
   max-width: calc((100% - (29px * 3)) / 4);
 `;
 
@@ -92,5 +94,24 @@ export const BtnLearnMore = styled.button`
 
   &:hover {
     background-color: #0b44cd;
+  }
+`;
+
+export const HeartImg = styled(Heart)`
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 18px;
+  height: 18px;
+  stroke: #fff;
+  stroke-opacity: 0.8;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  &:hover,
+  &:focus {
+    fill: #3470ff;
+    stroke: #3470ff;
   }
 `;

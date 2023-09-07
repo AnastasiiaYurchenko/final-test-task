@@ -13,6 +13,7 @@ import {
   TopWrapInfo,
   WrapInfo,
   WrapTitles,
+  HeartImg,
 } from './Catalog.styled';
 
 import NoImageCar from 'images/no-image-car.jpg';
@@ -28,6 +29,10 @@ const Catalog = () => {
 
   const handleLoadMore = () => {
     setPage(prev => prev + 1);
+  };
+
+  const handleHeart = () => {
+    console.log('click');
   };
 
   useEffect(() => {
@@ -91,6 +96,7 @@ const Catalog = () => {
                 </WrapInfo>
 
                 <BtnLearnMore type="button">Learn more</BtnLearnMore>
+                <HeartImg onClick={handleHeart} />
               </CarItem>
             );
           })}
