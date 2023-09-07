@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as API from '../../API';
 import { Loader } from 'components/Loader/Loader';
 import {
+  BottomWrapInfo,
   BtnLearnMore,
   CarItem,
   CarsList,
@@ -9,6 +10,7 @@ import {
   Text,
   TextModel,
   TextTitles,
+  TopWrapInfo,
   WrapInfo,
   WrapTitles,
 } from './Catalog.styled';
@@ -64,12 +66,16 @@ const Catalog = () => {
               </WrapTitles>
 
               <WrapInfo>
-                <Text>{car.address.split(',')[1]}</Text>
-                <Text>{car.address.split(',')[2]}</Text>
-                <Text>{car.rentalCompany}</Text>
-                <Text> {car.type} </Text>
-                <Text>{car.id}</Text>
-                <Text>{car.accessories[0]}</Text>
+                <TopWrapInfo>
+                  <Text>{car.address.split(',')[1]}</Text>
+                  <Text>{car.address.split(',')[2]}</Text>
+                  <Text>{car.rentalCompany}</Text>
+                </TopWrapInfo>
+                <BottomWrapInfo>
+                  <Text> {car.type} </Text>
+                  <Text>{car.id}</Text>
+                  <Text>{car.accessories[0]}</Text>
+                </BottomWrapInfo>
               </WrapInfo>
 
               <BtnLearnMore type="button">Learn more</BtnLearnMore>

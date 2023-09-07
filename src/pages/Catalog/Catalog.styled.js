@@ -28,11 +28,11 @@ export const TextModel = styled.span`
 `;
 
 export const WrapInfo = styled.div`
-  display: flex;
+  /* /* display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 12px; */
   margin-bottom: 28px;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2; */
@@ -45,20 +45,28 @@ export const Text = styled.p`
   line-height: calc(18 / 12);
   color: #121417;
   opacity: 0.5;
+  /* overflow: hidden; */
+
+  &:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background-color: #121417;
+    opacity: 0.1;
+    margin: 0 6px;
+    vertical-align: middle;
+  }
 `;
 
-// .mob-socials__item:not(:last-child)::after {
-//   content: "";
-
-//   display: inline-block;
-
-//   width: 2px;
-
-//   height: 22px;
-
-//   background-color: rgba(33,33,33,.2);
-
-//   margin: 0 10px;
+export const TopWrapInfo = styled.div`
+  display: flex;
+  margin-bottom: 4px;
+`;
+export const BottomWrapInfo = styled.div`
+  display: flex;
+  /* overflow: hidden; */
+`;
 
 export const Image = styled.img`
   display: block;
