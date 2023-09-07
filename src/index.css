@@ -1,4 +1,9 @@
-@import-normalize; /* bring in normalize.css styles */
+/* @import-normalize; bring in normalize.css styles */
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('./fonts/Manrope/Manrope-VariableFont_wght.ttf') format('ttf');
+}
 
 body {
   margin: 0;

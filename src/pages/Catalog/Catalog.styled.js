@@ -41,7 +41,7 @@ export const WrapInfo = styled.div`
 
 export const Text = styled.p`
   font-size: 12px;
-  font-weight: 400px;
+  font-weight: 400;
   line-height: calc(18 / 12);
   color: #121417;
   opacity: 0.5;
@@ -69,8 +69,9 @@ export const Image = styled.img`
 `;
 
 export const BtnLearnMore = styled.button`
-  display: inline-block;
-  padding: 12px 100px;
+  display: block;
+  padding: 12px;
+  width: 100%;
   border-radius: 12px;
   border: none;
   background-color: #3470ff;
