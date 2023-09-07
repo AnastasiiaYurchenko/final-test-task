@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/final-test-task/static/css/main.40add51a.css",
-    "main.js": "/final-test-task/static/js/main.24a365fa.js",
+    "main.js": "/final-test-task/static/js/main.8a4138da.js",
     "static/js/806.5292c4c1.chunk.js": "/final-test-task/static/js/806.5292c4c1.chunk.js",
-    "static/js/576.6e3d9816.chunk.js": "/final-test-task/static/js/576.6e3d9816.chunk.js",
+    "static/js/249.ecb83f0d.chunk.js": "/final-test-task/static/js/249.ecb83f0d.chunk.js",
     "static/js/497.7ce432c9.chunk.js": "/final-test-task/static/js/497.7ce432c9.chunk.js",
     "static/js/279.cde0608f.chunk.js": "/final-test-task/static/js/279.cde0608f.chunk.js",
     "static/media/Manrope-VariableFont_wght.ttf": "/final-test-task/static/media/Manrope-VariableFont_wght.4afb283bba326df875f6.ttf",
     "static/media/no-image-car.jpg": "/final-test-task/static/media/no-image-car.9a3ecb413e743c27d998.jpg",
     "index.html": "/final-test-task/index.html",
     "main.40add51a.css.map": "/final-test-task/static/css/main.40add51a.css.map",
-    "main.24a365fa.js.map": "/final-test-task/static/js/main.24a365fa.js.map",
+    "main.8a4138da.js.map": "/final-test-task/static/js/main.8a4138da.js.map",
     "806.5292c4c1.chunk.js.map": "/final-test-task/static/js/806.5292c4c1.chunk.js.map",
-    "576.6e3d9816.chunk.js.map": "/final-test-task/static/js/576.6e3d9816.chunk.js.map",
+    "249.ecb83f0d.chunk.js.map": "/final-test-task/static/js/249.ecb83f0d.chunk.js.map",
     "497.7ce432c9.chunk.js.map": "/final-test-task/static/js/497.7ce432c9.chunk.js.map",
     "279.cde0608f.chunk.js.map": "/final-test-task/static/js/279.cde0608f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.40add51a.css",
-    "static/js/main.24a365fa.js"
+    "static/js/main.8a4138da.js"
   ]
 }
