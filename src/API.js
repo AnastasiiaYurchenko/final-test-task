@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const getTrendingMovies = async () => {
+export const getTrendingMovies = async (page, perPage) => {
   const response = await axios.get(
-    `https://647baa58d2e5b6101db18476.mockapi.io/adverts`
+    `https://647baa58d2e5b6101db18476.mockapi.io/adverts?page=${page}&limit=8`
   );
   if (response.status === 404) {
     throw new Error('Something went wrong, please try again', response.status);
