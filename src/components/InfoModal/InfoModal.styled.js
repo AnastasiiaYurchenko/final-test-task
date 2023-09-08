@@ -50,10 +50,12 @@ export const Text = styled.p`
 
 export const TopWrapInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 4px;
 `;
 export const BottomWrapInfo = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 24px;
 `;
 
@@ -120,4 +122,12 @@ export const Close = styled(CloseX)`
   right: -24px;
   width: 24px;
   height: 24px;
+  cursor: pointer;
+  transition: all 250ms;
+
+  &:hover,
+  &:focus {
+    fill: black;
+    transform: scale(1.2);
+  }
 `;

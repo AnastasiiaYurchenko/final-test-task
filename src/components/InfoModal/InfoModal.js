@@ -23,7 +23,7 @@ const customStyles = {
   content: {
     position: 'relative',
     maxWidth: '541px',
-    height: '752px',
+    minHeight: '752px',
     padding: '40px',
     borderRadius: '24px',
     top: '50%',
@@ -92,7 +92,10 @@ export const InfoModal = ({ isOpen, car, onClose }) => {
             </ConditionAccent>
           </Condition>
           <Condition>
-            Price: <ConditionAccent>{car.rentalPrice}</ConditionAccent>
+            Price:{' '}
+            <ConditionAccent>
+              {car.rentalPrice.replace(/\$/g, '') + '$'}
+            </ConditionAccent>
           </Condition>
         </ConditionsWrap>
 
