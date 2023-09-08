@@ -23,10 +23,18 @@ export const Header = styled.header`
 
 export const Link = styled(NavLink)`
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 12px;
   text-decoration: none;
   color: black;
   font-weight: 500;
+  transition: all 250ms;
+
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: #3470ff;
+    transform: scale(1.1);
+  }
 
   &.active {
     color: white;

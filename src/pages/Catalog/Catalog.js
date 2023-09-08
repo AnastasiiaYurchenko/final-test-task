@@ -1,31 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import * as API from '../../API';
 import { Loader } from 'components/Loader/Loader';
-// import {
-//   BottomWrapInfo,
-//   BtnLearnMore,
-//   CarItem,
-//   // CarsList,
-//   Image,
-//   Text,
-//   TextModel,
-//   TextTitles,
-//   TopWrapInfo,
-//   WrapInfo,
-//   WrapTitles,
-//   HeartImg,
-// } from './Catalog.styled';
 import { CarsList } from 'components/CarsList/CarsList';
 
 import { Button } from 'components/Button/Button';
+import SearchBar from 'components/SearchBar/SearchBar';
 
 export const ERROR_MSG = 'Something went wrong, please try again';
 
 const Catalog = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const carName = searchParams.get('search') ?? '';
+  // const [searchName, setSearchName] = useState('');
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+
+  const visibleCars = cars.filter(car =>
+    car.make.toLowerCase().includes(carName.toLowerCase())
+  );
+
+  const updateQueryString = search => {
+    const nextParams = search !== '' ? { search } : {};
+    setSearchParams(nextParams);
+  };
   // const [selectedCar, setSelectedCar] = useState(null);
   // const [favorites, setFavorites] = useState([]);
 
@@ -50,6 +50,9 @@ const Catalog = () => {
   };
 
   useEffect(() => {
+    // if (searchName === '') {
+    //   return;
+    // }
     async function getAllCars() {
       try {
         setLoading(true);
@@ -72,12 +75,23 @@ const Catalog = () => {
     }
     getAllCars();
   }, [page]);
-  //   console.log(movies);
+
+  // const handleFormSearch = searchName => {
+  //   setSearchName(searchName);
+  //   // setPage(1);
+  //   setCars([]);
+  // };
+
   return (
     <div>
+      <SearchBar
+        value={carName}
+        onChange={updateQueryString}
+        // onSearch={handleFormSearch}
+      />
       {error && <h1>{error} </h1>}
       {loading && <Loader />}
-      <CarsList cars={cars} />
+      <CarsList cars={visibleCars} />
 
       {cars && cars.length > 0 && <Button onClick={handleLoadMore} />}
     </div>

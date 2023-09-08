@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getAllCars = async (page, perPage) => {
+export const getAllCars = async page => {
   const response = await axios.get(
     `https://647baa58d2e5b6101db18476.mockapi.io/adverts?page=${page}&limit=8`
   );
@@ -41,9 +41,9 @@ export const getAllCars = async (page, perPage) => {
 //   return response.data;
 // };
 
-// export const SearchMovies = async query => {
+// export const SearchMovies = async search => {
 //   const response = await axios.get(
-//     `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${KEY}`
+//     `https://647baa58d2e5b6101db18476.mockapi.io/adverts?search=${search}&limit=8`
 //   );
 //   if (response.status === 404) {
 //     throw new Error('Something went wrong, please try again', response.status);
