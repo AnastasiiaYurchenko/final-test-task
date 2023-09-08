@@ -8,7 +8,7 @@ export const CarsList = ({ cars }) => {
       {cars.map(car => {
         return (
           <Item key={car.id}>
-            <CarItem car={car} cars={cars} />
+            <CarItem car={car} />
           </Item>
         );
       })}

@@ -1,5 +1,5 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import {
   Image,
@@ -52,7 +52,13 @@ const CarItem = ({ car }) => {
         </BottomWrapInfo>
       </WrapInfo>
 
-      <BtnLearnMore type="button" onClick={() => setSelectedCar(car)}>
+      <BtnLearnMore
+        type="button"
+        onClick={() => {
+          console.log('click', car, selectedCar);
+          return setSelectedCar(car);
+        }}
+      >
         Learn more
       </BtnLearnMore>
       <HeartImg onClick={handleHeart} />
@@ -64,25 +70,30 @@ const CarItem = ({ car }) => {
                   }}
                 /> */}
       {/* </CarItem> */}
-      <InfoModal
-        isOpen={selectedCar !== null}
-        onClose={() => setSelectedCar(null)}
-        car={selectedCar}
-      />
+      {selectedCar && (
+        <InfoModal
+          car={selectedCar}
+          isOpen={selectedCar !== null}
+          onClose={() => setSelectedCar(null)}
+        />
+      )}
     </div>
   );
 };
 
 export default CarItem;
 
-// CarItem.propTypes = {
-//     car: PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     time: PropTypes.number.isRequired,
-//     servings: PropTypes.number.isRequired,
-//     calories: PropTypes.number.isRequired,
-//     image: PropTypes.string.isRequired,
-//     difficulty: PropTypes.oneOf(['easy', 'medium', 'hard']).isRequired,
-//   }).isRequired,
-// };
+CarItem.propTypes = {
+  car: PropTypes
+    .shape
+    // {
+    // id: PropTypes.string.isRequired,
+    // name: PropTypes.string.isRequired,
+    // time: PropTypes.number.isRequired,
+    // servings: PropTypes.number.isRequired,
+    // calories: PropTypes.number.isRequired,
+    // image: PropTypes.string.isRequired,
+    // difficulty: PropTypes.oneOf(['easy', 'medium', 'hard']).isRequired,
+    // }
+    ().isRequired,
+};

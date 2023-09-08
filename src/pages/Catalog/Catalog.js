@@ -18,7 +18,6 @@ import { Loader } from 'components/Loader/Loader';
 import { CarsList } from 'components/CarsList/CarsList';
 
 import { Button } from 'components/Button/Button';
-// import { InfoModal } from 'components/InfoModal/InfoModal';
 
 export const ERROR_MSG = 'Something went wrong, please try again';
 
@@ -81,11 +80,6 @@ const Catalog = () => {
       <CarsList cars={cars} />
 
       {cars && cars.length > 0 && <Button onClick={handleLoadMore} />}
-      {/* <InfoModal
-        isOpen={selectedCar !== null}
-        onClose={() => setSelectedCar(null)}
-        car={selectedCar}
-      /> */}
     </div>
   );
 };
