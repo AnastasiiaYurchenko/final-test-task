@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getTrendingMovies = async (page, perPage) => {
+export const getAllCars = async (page, perPage) => {
   const response = await axios.get(
     `https://647baa58d2e5b6101db18476.mockapi.io/adverts?page=${page}&limit=8`
   );

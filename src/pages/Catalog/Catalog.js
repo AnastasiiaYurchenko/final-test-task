@@ -51,19 +51,19 @@ const Catalog = () => {
   };
 
   useEffect(() => {
-    async function getTrendingMovies() {
+    async function getAllCars() {
       try {
         setLoading(true);
         setError(null);
-        const trendingMovies = await API.getTrendingMovies(page);
+        const allCars = await API.getAllCars(page);
         // console.log(trendingMovies);
 
         if (page === 1) {
           // Якщо це перший запит, просто встановлюємо результати
-          setCars(trendingMovies);
+          setCars(allCars);
         } else {
           // Якщо це наступний запит, додаємо результати до поточних
-          setCars(prevCars => [...prevCars, ...trendingMovies]);
+          setCars(prevCars => [...prevCars, ...allCars]);
         }
       } catch (error) {
         setError(ERROR_MSG);
@@ -71,7 +71,7 @@ const Catalog = () => {
         setLoading(false);
       }
     }
-    getTrendingMovies();
+    getAllCars();
   }, [page]);
   //   console.log(movies);
   return (
