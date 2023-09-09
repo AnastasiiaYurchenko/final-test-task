@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ReactComponent as Heart } from '../../images/svg/heart.svg';
 
 export const WrapTitles = styled.div`
@@ -92,11 +92,20 @@ export const HeartImg = styled(Heart)`
   right: 14px;
   width: 18px;
   height: 18px;
-  stroke: #fff;
-  stroke-opacity: 0.8;
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+  cursor: pointer;
+  ${props =>
+    props['data-isfavorite']
+      ? css`
+          fill: #3470ff;
+          stroke: #3470ff;
+        `
+      : css`
+          fill: transparent;
+          stroke: rgba(255, 255, 255, 0.8);
+        `}
 
   &:hover,
   &:focus {

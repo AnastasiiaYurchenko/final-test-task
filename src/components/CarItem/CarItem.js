@@ -1,6 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+// import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   WrapTitles,
@@ -19,15 +20,63 @@ import { InfoModal } from 'components/InfoModal/InfoModal';
 
 const CarItem = ({ car }) => {
   const [selectedCar, setSelectedCar] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleHeart = () => {
-    console.log('click');
+  useEffect(() => {
+    // Перевіряємо, чи автомобіль є у списку улюблених при завантаженні компонента
+    const favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || [];
+    setIsFavorite(favoriteCars.some(favoriteCar => favoriteCar.id === car.id));
+  }, [car.id]);
+
+  // Функція для додавання автомобіля в LocalStorage та оновлення стану isFavorite
+  const handleAddToFavorite = () => {
+    addToLocalStorage(car);
+    setIsFavorite(true); // Встановлюємо isFavorite в true при додаванні
   };
+
+  // Функція для видалення автомобіля з LocalStorage та оновлення стану isFavorite
+  const handleRemoveFromFavorite = () => {
+    removeFromLocalStorage(car);
+    setIsFavorite(false); // Встановлюємо isFavorite в false при видаленні
+  };
+
+  // Функція для додавання автомобіля в LocalStorage
+  const addToLocalStorage = car => {
+    const favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || [];
+    favoriteCars.push(car);
+    localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
+  };
+
+  // Функція для видалення автомобіля з LocalStorage
+  const removeFromLocalStorage = car => {
+    const favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || [];
+    const updatedFavoriteCars = favoriteCars.filter(
+      favoriteCar => favoriteCar.id !== car.id
+    );
+    localStorage.setItem('favoriteCars', JSON.stringify(updatedFavoriteCars));
+  };
+
+  // const handleHeart = () => {
+  //   console.log('click Heart');
+  //   // Перевіряємо, чи автомобіль вже є у вибраному
+  //   const favoriteCars = JSON.parse(localStorage.getItem('favoriteCars')) || [];
+  //   const isCarInFavorites = favoriteCars.some(
+  //     favoriteCar => favoriteCar.id === car.id
+  //   );
+
+  //   if (isCarInFavorites) {
+  //     // Якщо автомобіль вже у вибраному, видаляємо його
+  //     removeFromLocalStorage(car);
+  //   } else {
+  //     // Якщо автомобіль не у вибраному, додаємо його
+  //     addToLocalStorage(car);
+  //   }
+  // };
 
   return (
     <div>
       <Image
-        src={car.img || NoImageCar}
+        src={car.img || car.photoLink || NoImageCar}
         alt={car.make}
         width="274px"
         height="268px"
@@ -61,15 +110,12 @@ const CarItem = ({ car }) => {
       >
         Learn more
       </BtnLearnMore>
-      <HeartImg onClick={handleHeart} />
-      {/* <HeartImg
-                  onClick={() => toggleFavorite(car)}
-                  style={{
-                    fill: isFavorite ? '#3470ff' : 'currentColor',
-                    stroke: isFavorite ? '#3470ff' : 'currentColor',
-                  }}
-                /> */}
-      {/* </CarItem> */}
+      {/* <HeartImg onClick={handleHeart} /> */}
+      <HeartImg
+        onClick={isFavorite ? handleRemoveFromFavorite : handleAddToFavorite}
+        data-isfavorite={isFavorite}
+      />
+
       {selectedCar && (
         <InfoModal
           car={selectedCar}
