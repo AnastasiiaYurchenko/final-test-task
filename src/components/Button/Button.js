@@ -3,7 +3,7 @@ import { ButtonLoad } from './Button.styled';
 
 export const Button = ({ onClick }) => {
   return (
-    <ButtonLoad type="submit" onClick={onClick}>
+    <ButtonLoad type="button" onClick={onClick}>
       Load more
     </ButtonLoad>
   );
