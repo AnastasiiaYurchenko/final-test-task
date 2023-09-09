@@ -94,6 +94,7 @@ export const Condition = styled.p`
 
 export const ConditionAccent = styled.span`
   color: #3470ff;
+  font-weight: 600;
 `;
 
 export const BtnRental = styled.a`
