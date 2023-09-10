@@ -19,15 +19,7 @@ export const TextModel = styled.span`
 `;
 
 export const WrapInfo = styled.div`
-  /* /* display: flex;
-  flex-wrap: wrap;
-  gap: 12px; */
   margin-bottom: 28px;
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2; */
-  /* -webkit-box-orient: vertical; */
 `;
 
 export const Text = styled.p`
@@ -36,7 +28,6 @@ export const Text = styled.p`
   line-height: calc(18 / 12);
   color: #121417;
   opacity: 0.5;
-  /* overflow: hidden; */
 
   &:not(:last-child)::after {
     content: '';
@@ -56,7 +47,6 @@ export const TopWrapInfo = styled.div`
 `;
 export const BottomWrapInfo = styled.div`
   display: flex;
-  /* overflow: hidden; */
 `;
 
 export const Image = styled.img`
