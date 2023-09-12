@@ -20,6 +20,9 @@ import {
 import NoImageCar from 'images/no-image-car.jpg';
 
 const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(12, 14, 17, 0.5)',
+  },
   content: {
     position: 'relative',
     maxWidth: '541px',
