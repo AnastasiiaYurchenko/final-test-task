@@ -52,7 +52,8 @@ export const BottomWrapInfo = styled.div`
 export const Image = styled.img`
   display: block;
   border-radius: 14px;
-  height: 268px;
+  height: 274px;
+  width: 268px;
   object-fit: cover;
   margin-bottom: 14px;
 `;
