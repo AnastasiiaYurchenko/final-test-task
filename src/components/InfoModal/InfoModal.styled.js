@@ -9,6 +9,7 @@ export const Image = styled.img`
   display: block;
   border-radius: 14px;
   height: 248px;
+  width: 461px;
   object-fit: cover;
   margin-bottom: 14px;
 `;
@@ -90,9 +91,18 @@ export const Condition = styled.p`
   font-size: 12px;
   line-height: 1.5;
   font-weight: 400;
+
+  &:first-child {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  &:nth-last-child(-n + 2) {
+    font-family: 'Montserrat', sans-serif;
+  }
 `;
 
 export const ConditionAccent = styled.span`
+  font-family: 'Montserrat', sans-serif;
   color: #3470ff;
   font-weight: 600;
 `;
