@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import * as API from '../../API';
 import { Loader } from 'components/Loader/Loader';
@@ -11,54 +11,76 @@ export const ERROR_MSG = 'Something went wrong, please try again';
 
 const Catalog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const carName = searchParams.get('search') ?? '';
+  // const carName = searchParams.get('search') ?? '';
+  // const priceTo = searchParams.get('price') ?? '';
+
+  const params = useMemo(
+    () => Object.fromEntries([...searchParams]),
+    [searchParams]
+  );
+  const { carName, priceTo } = params;
+
   // const [searchName, setSearchName] = useState('');
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
 
-  const visibleCars = cars.filter(car =>
-    car.make.toLowerCase().includes(carName.toLowerCase())
-  );
+  // const visibleCars = cars.filter(
+  //   car =>
+  //     car.make.toLowerCase().includes(carName.toLowerCase()) &&
+  //     priceTo <= car.rentalPricereplace(/\D/g, '')
+  // );
 
-  const updateQueryString = search => {
-    const nextParams = search !== '' ? { search } : {};
-    setSearchParams(nextParams);
-  };
-  // const [selectedCar, setSelectedCar] = useState(null);
-  // const [favorites, setFavorites] = useState([]);
+  const visibleCars = cars.filter(car => {
+    const make = car.make ? car.make.toLowerCase() : ''; // Перевірка на існування та перетворення на рядок
+    const rentalPrice = car.rentalPrice
+      ? parseFloat(car.rentalPrice.replace(/\D/g, ''))
+      : 0; // Перевірка на існування та вилучення нечислових символів
 
-  // // Функція для додавання або видалення оголошення до/зі списку улюблених
-  // const toggleFavorite = car => {
-  //   if (favorites.includes(car.id)) {
-  //     // Видалити оголошення зі списку улюблених
-  //     const updatedFavorites = favorites.filter(favId => favId !== car.id);
-  //     setFavorites(updatedFavorites);
-  //   } else {
-  //     // Додати оголошення до списку улюблених
-  //     setFavorites([...favorites, car.id]);
-  //   }
+    // return make.includes(carName.toLowerCase()) && priceTo <= rentalPrice;
+    return (
+      (carName ? make.includes(carName.toLowerCase()) : true) &&
+      (priceTo ? priceTo <= rentalPrice : true)
+    );
+  });
+
+  // const updateQueryString = search => {
+  //   const nextParams = search !== '' ? { search } : {};
+  //   setSearchParams(nextParams);
   // };
 
-  // // Функція для перевірки, чи оголошення улюблене
-  // const isFavorite = car => favorites.includes(car.id);
-  // console.log(isFavorite());
+  const updateQueryString = e => {
+    setSearchParams({ carName: e.target.value, priceTo: e.target.value });
+  };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   if (carName === '') {
+  //     return alert('Enter the brand');
+  //   }
+  //   const form = e.currentTarget;
+  //   console.log(form);
+  //   setSearchParams({
+  //     carName: form.elements.carName.value,
+  //     priceTo: form.elements.priceTo.value,
+  //   });
+  //   form.reset();
+  // };
 
   const handleLoadMore = () => {
     setPage(prev => prev + 1);
   };
 
   useEffect(() => {
-    // if (searchName === '') {
-    //   return;
-    // }
+    if (carName === '' && priceTo === '') {
+      return;
+    }
     async function getAllCars() {
       try {
         setLoading(true);
         setError(null);
         const allCars = await API.getAllCars(page);
-        // console.log(trendingMovies);
 
         if (page === 1) {
           // Якщо це перший запит, просто встановлюємо результати
@@ -74,7 +96,7 @@ const Catalog = () => {
       }
     }
     getAllCars();
-  }, [page]);
+  }, [page, carName, priceTo]);
 
   // const handleFormSearch = searchName => {
   //   setSearchName(searchName);
@@ -85,7 +107,8 @@ const Catalog = () => {
   return (
     <div>
       <SearchBar
-        value={carName}
+        value={params}
+        // onSubmit={handleSubmit}
         onChange={updateQueryString}
         // onSearch={handleFormSearch}
       />
