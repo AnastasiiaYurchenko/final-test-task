@@ -1,7 +1,7 @@
 // import React, { useState, useEffect } from 'react';
-// import React, { useMemo } from 'react';
+import React from 'react';
 
-import { useSearchParams } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import {
   BtnSearch,
@@ -10,55 +10,14 @@ import {
   SearchForm,
   WrapInputes,
 } from './SearchBar.styled';
-import { useMemo } from 'react';
 // import * as API from '../../API';
 
 export const ERROR_MSG = 'Something went wrong, please try again';
 
 const SearchBar = ({ value, onChange }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const params = useMemo(
-    () => Object.fromEntries([...searchParams]),
-    [searchParams]
-  );
-
-  const { carName, priceTo } = value;
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (carName === '') {
-      return alert('Enter the brand');
-    }
-    const form = e.currentTarget;
-    console.log(form);
-    setSearchParams({
-      carName: form.elements.carName.value,
-      priceTo: form.elements.priceTo.value,
-    });
-    form.reset();
-  };
-
-  // const handleCarNameChange = e => {
-  //   // Оновлення carName при зміні значення поля
-  //   const newValue = e.target.value; // Отримати нове значення поля вводу
-  //   // Оновити carName з новим значенням
-  //   setSearchParams(prevParams => ({
-  //     ...prevParams,
-  //     carName: newValue,
-  //   }));
-  // };
-
-  // const handlePriceToChange = e => {
-  //   // Оновлення priceTo при зміні значення поля
-  //   const newValue = e.target.value;
-  //   setSearchParams(prevParams => ({
-  //     ...prevParams,
-  //     priceTo: newValue,
-  //   }));
-  // };
   //   const [searchName, setSearchName] = useState('');
   //   const [searchedMovies, setSearchedMovies] = useState([]);
-
+  //   const [searchParams, setSearchParams] = useSearchParams();
   //   const [error, setError] = useState(null);
   //   const [loading, setLoading] = useState(false);
 
@@ -74,18 +33,22 @@ const SearchBar = ({ value, onChange }) => {
   //     setSearchParams({ search: searchQueryValue });
   //   };
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (carName === '') {
-  //     return alert('Enter the brand');
-  //   }
-  //   const form = e.currentTarget;
-  //   setSearchParams({
-  //     carName: form.elements.username.value,
-  //     priceTo: form.elements.username.value,
-  //   });
-  //   form.reset();
-  // };
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (value === '') {
+      return alert('Enter the brand');
+    }
+    // onSearch(searchName);
+    // setSearchName('');
+
+    const form = e.currentTarget;
+    // console.log(form.elements);
+    // console.log(search);
+    // console.log(searchedMovies);
+    // setSearchParams({ search: form.elements.search.value });
+    form.reset();
+  };
 
   //   useEffect(() => {
   //     if (search === '' || search === null) return;
@@ -109,23 +72,18 @@ const SearchBar = ({ value, onChange }) => {
 
   return (
     <div>
-      <SearchForm
-        // onSubmit={onSubmit}
-        // onSubmit={handleSubmit}
-        onChange={onChange}
-      >
+      <SearchForm onSubmit={handleSubmit}>
         <Label>
           Car brand
           <InputField
             type="text"
-            name="carName"
+            name="search"
             autoComplete="off"
             autoFocus
             placeholder="Enter the text"
-            // value={carName}
-            // onChange={handleCarNameChange}
+            value={value}
             //   onChange={handleSearchNameChange}
-            // onChange={e => onChange(e.target.value)}
+            onChange={e => onChange(e.target.value)}
           />
         </Label>
 
@@ -133,14 +91,13 @@ const SearchBar = ({ value, onChange }) => {
           Price/ 1 hour
           <InputField
             type="text"
-            name="priceTo"
+            name="price"
             autoComplete="off"
             autoFocus
             placeholder="To $"
-            // value={priceTo}
-            // onChange={handlePriceToChange}
+            // value={value}
             //   onChange={handleSearchNameChange}
-            // onChange={e => onChange(e.target.value)}
+            onChange={e => onChange(e.target.value)}
           />
         </Label>
 
@@ -149,23 +106,23 @@ const SearchBar = ({ value, onChange }) => {
           <WrapInputes>
             <InputField
               type="text"
-              // name="kmFrom"
+              name="kmFrom"
               autoComplete="off"
               autoFocus
               placeholder="From"
               //   value={value}
               //   onChange={handleSearchNameChange}
-              // onChange={e => onChange(e.target.value)}
+              onChange={e => onChange(e.target.value)}
             />
             <InputField
               type="text"
-              // name="kmTo"
+              name="kmTo"
               autoComplete="off"
               autoFocus
               placeholder="To"
               //   value={value}
               //   onChange={handleSearchNameChange}
-              // onChange={e => onChange(e.target.value)}
+              onChange={e => onChange(e.target.value)}
             />
           </WrapInputes>
         </Label>
