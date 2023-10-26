@@ -26,7 +26,8 @@ const customStyles = {
   content: {
     position: 'relative',
     maxWidth: '541px',
-    minHeight: '752px',
+    height: '752px',
+    maxHeight: '100hv',
     padding: '40px',
     borderRadius: '24px',
     top: '50%',
